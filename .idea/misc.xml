@@ -11,6 +11,11 @@
         <option value="$PROJECT_DIR$/camunda-orchestor/pom.xml" />
       </list>
     </option>
+    <option name="ignoredFiles">
+      <set>
+        <option value="$PROJECT_DIR$/orders-service/customers-service/pom.xml" />
+      </set>
+    </option>
   </component>
   <component name="ProjectRootManager">
     <output url="file://$PROJECT_DIR$/out" />
