@@ -8,6 +8,7 @@
         <option value="$PROJECT_DIR$/orders-service/pom.xml" />
         <option value="$PROJECT_DIR$/orders-service/customers-service/pom.xml" />
         <option value="$PROJECT_DIR$/customer-service/pom.xml" />
+        <option value="$PROJECT_DIR$/camunda-orchestor/pom.xml" />
       </list>
     </option>
   </component>
