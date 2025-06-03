@@ -1,8 +1,10 @@
 package com.orchestor.camundaorchestor;
 
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import org.camunda.bpm.engine.RuntimeService;
+import org.camunda.bpm.engine.runtime.ProcessInstance;
 import org.camunda.bpm.engine.variable.Variables;
 import org.camunda.bpm.engine.variable.value.ObjectValue;
 import org.springframework.boot.CommandLineRunner;
@@ -23,44 +25,64 @@ public class CamundaOrchestorApplication {
         SpringApplication.run(CamundaOrchestorApplication.class, args);
     }
 
-
+    @Bean
+    public ObjectMapper camundaObjectMapper() {
+        ObjectMapper mapper = new ObjectMapper();
+        mapper.registerModule(new JavaTimeModule());
+        return mapper;
+    }
     @Bean
     CommandLineRunner runner(RuntimeService service){
 
         return args -> {
 
+//
+//
+//            // camundaService.startUserActivationProcess("john");
+//
+//
+//
+//
+//
+//
+//
 
-
-            // camundaService.startUserActivationProcess("john");
-
-            Thread.sleep(20000);
-
-
-
-
-
-            ObjectMapper objectMapper = new ObjectMapper();
-            objectMapper.registerModule(new JavaTimeModule());
-            String orderJson = objectMapper.writeValueAsString(new OrderDto(
+            OrderDto order = new OrderDto(
                     1L,
                     123,
                     LocalDate.now(),
-                    List.of(new LineOrderDto(1L, 2, 1001L))
-            ));
+                    List.of(new LineOrderDto(1L, 2, 1L))
+            );
 
-            ObjectValue orderValue = Variables
-                    .serializedObjectValue(orderJson)
-                    .serializationDataFormat(Variables.SerializationDataFormats.JSON)
-                    .objectTypeName(OrderDto.class.getName()) // optional but useful
-                    .create();
+//
+//            // Start the process with proper serialization
+//
+//
+//            Thread.sleep(10000);
+//
+//            System.out.println("waiting first 10 seconds is completed");
+            ProcessInstance instance=service.startProcessInstanceByKey(
+                    "Process_042xkxb",
+                    Map.of("order", Variables.objectValue(order).create())
+            );
+
+//
+//            Thread.sleep(10000);
+//            System.out.println("waiting 10 sec for process instance is completed");
+//
+//
+//
+//// Wait until the process is finished or poll for status
+//            ObjectMapper mapper = new ObjectMapper();
+//            mapper.registerModule(new JavaTimeModule());
+//            boolean isValid= (boolean) service.getVariable(instance.getId(), "isValid");
+////            List<FullOrderLineResponse> list = mapper.readValue(json, new TypeReference<List<FullOrderLineResponse>>() {});
+//
+//            System.out.println("isvalid"+isValid);
 
 
-            Map<String, Object> vars = new HashMap<>();
-            vars.put("order", orderValue);
 
 
-
-            service.startProcessInstanceByKey("Process_042xkxb",vars);
 
 
 

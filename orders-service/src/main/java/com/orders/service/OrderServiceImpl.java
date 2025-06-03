@@ -5,6 +5,7 @@ package com.orders.service;
 import com.orders.dao.OrderRepository;
 import com.orders.dto.OrderDto;
 import com.orders.dto.OrderRequest;
+import com.orders.entities.LineOrder;
 import com.orders.entities.Order;
 import com.orders.mapper.OrderMapper;
 import org.springframework.stereotype.Service;
@@ -25,10 +26,20 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public OrderDto createOrder(OrderRequest request) {
-        Order order = orderMapper.toEntity(request);
-        Order saved = orderRepository.save(order);
-        return orderMapper.toDto(saved);
+    public OrderDto createOrder(OrderDto request) {
+        Order order =new Order();
+        order.setLineOrders(request.lineOrders()
+                .stream().map(o->
+
+                {
+                    LineOrder tmp=new LineOrder();;
+                    tmp.setQuantity(o.quantity());
+                    tmp.setProductId(o.productId());
+                    return tmp;
+
+                }).toList());
+
+        return orderMapper.toDto(orderRepository.save(order));
     }
 
     @Override

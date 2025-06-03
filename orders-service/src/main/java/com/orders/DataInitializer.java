@@ -21,22 +21,7 @@ public class DataInitializer {
     @Bean
     public CommandLineRunner initOrders(OrderService orderService) {
         return args -> {
-            for (int i = 1; i <= 4; i++) {
-                int customerId = random.nextInt(1000) + 1;
 
-                List<LineOrderRequest> lines = List.of(
-                        new LineOrderRequest(random.nextInt(5) + 1, getRandomProductId()),
-                        new LineOrderRequest(random.nextInt(5) + 1, getRandomProductId())
-                );
-
-                OrderRequest orderRequest = new OrderRequest(
-                        customerId,
-                        LocalDate.now().minusDays(random.nextInt(10)),
-                        lines
-                );
-
-                orderService.createOrder(orderRequest);
-            }
         };
     }
 

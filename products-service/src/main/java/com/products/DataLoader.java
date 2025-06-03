@@ -13,7 +13,8 @@ import org.springframework.stereotype.Component;
 @Component
 public class DataLoader implements CommandLineRunner {
 
-    private final CategoryRepository categoryRepository;
+
+        private final CategoryRepository categoryRepository;
     private final ProductRepository productRepository;
 
     public DataLoader(CategoryRepository categoryRepository, ProductRepository productRepository) {

@@ -6,33 +6,48 @@
     </bpmn:startEvent>
     <bpmn:serviceTask id="Activity_0pjpe9s" name="Check Quantity" camunda:type="external" camunda:topic="check_quantity">
       <bpmn:incoming>Flow_1mure9c</bpmn:incoming>
-      <bpmn:outgoing>Flow_1g92zzs</bpmn:outgoing>
+      <bpmn:outgoing>Flow_1tocxlk</bpmn:outgoing>
     </bpmn:serviceTask>
     <bpmn:sequenceFlow id="Flow_1mure9c" sourceRef="StartEvent_1" targetRef="Activity_0pjpe9s" />
-    <bpmn:endEvent id="Event_16bo11k">
-      <bpmn:incoming>Flow_1g92zzs</bpmn:incoming>
+    <bpmn:serviceTask id="Activity_18qpurx" name="save order" camunda:type="external" camunda:topic="save_order">
+      <bpmn:incoming>Flow_1tocxlk</bpmn:incoming>
+      <bpmn:outgoing>Flow_1cxr89n</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:sequenceFlow id="Flow_1tocxlk" sourceRef="Activity_0pjpe9s" targetRef="Activity_18qpurx" />
+    <bpmn:endEvent id="Event_0jsealf">
+      <bpmn:incoming>Flow_1cxr89n</bpmn:incoming>
     </bpmn:endEvent>
-    <bpmn:sequenceFlow id="Flow_1g92zzs" sourceRef="Activity_0pjpe9s" targetRef="Event_16bo11k" />
+    <bpmn:sequenceFlow id="Flow_1cxr89n" sourceRef="Activity_18qpurx" targetRef="Event_0jsealf" />
   </bpmn:process>
   <bpmndi:BPMNDiagram id="BPMNDiagram_1">
     <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Process_042xkxb">
-      <bpmndi:BPMNShape id="StartEvent_1_di" bpmnElement="StartEvent_1">
-        <dc:Bounds x="152" y="102" width="36" height="36" />
-      </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Activity_0pjpe9s_di" bpmnElement="Activity_0pjpe9s">
-        <dc:Bounds x="370" y="80" width="100" height="80" />
+        <dc:Bounds x="340" y="80" width="100" height="80" />
         <bpmndi:BPMNLabel />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Event_16bo11k_di" bpmnElement="Event_16bo11k">
-        <dc:Bounds x="722" y="102" width="36" height="36" />
+      <bpmndi:BPMNShape id="StartEvent_1_di" bpmnElement="StartEvent_1">
+        <dc:Bounds x="132" y="112" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_18qpurx_di" bpmnElement="Activity_18qpurx">
+        <dc:Bounds x="660" y="80" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_0jsealf_di" bpmnElement="Event_0jsealf">
+        <dc:Bounds x="982" y="102" width="36" height="36" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="Flow_1mure9c_di" bpmnElement="Flow_1mure9c">
-        <di:waypoint x="188" y="120" />
-        <di:waypoint x="370" y="120" />
+        <di:waypoint x="168" y="130" />
+        <di:waypoint x="264" y="130" />
+        <di:waypoint x="264" y="120" />
+        <di:waypoint x="340" y="120" />
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="Flow_1g92zzs_di" bpmnElement="Flow_1g92zzs">
-        <di:waypoint x="470" y="120" />
-        <di:waypoint x="722" y="120" />
+      <bpmndi:BPMNEdge id="Flow_1tocxlk_di" bpmnElement="Flow_1tocxlk">
+        <di:waypoint x="440" y="120" />
+        <di:waypoint x="660" y="120" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1cxr89n_di" bpmnElement="Flow_1cxr89n">
+        <di:waypoint x="760" y="120" />
+        <di:waypoint x="982" y="120" />
       </bpmndi:BPMNEdge>
     </bpmndi:BPMNPlane>
   </bpmndi:BPMNDiagram>

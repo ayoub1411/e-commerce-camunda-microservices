@@ -14,6 +14,8 @@ public class Product {
     private String name;
     private double price;
 
+    private int quantity;
+
     @ManyToOne
     @JoinColumn(name = "category_id")
     private Category category;
@@ -30,6 +32,18 @@ public class Product {
     // Getters and Setters
     public Long getId() {
         return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
     }
 
     public String getName() {
